@@ -16,7 +16,7 @@ abstract class GenericMyList[+A] {
   def ++[B >: A](list: GenericMyList[B]): GenericMyList[B]
 }
 
-object Empty extends GenericMyList[Nothing]{
+case object Empty extends GenericMyList[Nothing]{
   def head: Nothing = throw new NoSuchElementException
   def tail: GenericMyList[Nothing] = throw new NoSuchElementException
   def isEmpty: Boolean = true
@@ -30,7 +30,7 @@ object Empty extends GenericMyList[Nothing]{
   def ++[B >: Nothing](list: GenericMyList[B]): GenericMyList[B] = list
 }
 
-class Cons[+A](h: A, t: GenericMyList[A]) extends GenericMyList[A]{
+case class Cons[+A](h: A, t: GenericMyList[A]) extends GenericMyList[A]{
   def head: A = h
   def tail: GenericMyList[A] = t
   def isEmpty: Boolean = false
